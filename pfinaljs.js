@@ -33,7 +33,7 @@ define(['jquery','lodash'], function ($,_) {
             require(['css!/less/css/spinner.css'])
         }
         , waterfall: function(el,data) {
-            require(['pfinaljs','bootstrap',window.pfinaljs.base + 'plug/waterfall/bootstrap-waterfall'],function() {
+            require(['pfinaljs','bootstrap',window.pfinaljs.base_url + 'plug/waterfall/bootstrap-waterfall'],function() {
                 $(el).data('bootstrap-waterfall-template', data).waterfall();
             })
         }
