@@ -32,6 +32,11 @@ define(['jquery','lodash'], function ($,_) {
         ,  spinners: function (callback) {
             require(['css!/less/css/spinner.css'])
         }
+        , waterfall: function(el,data) {
+            require(['pfinaljs','bootstrap',window.pfinaljs.base + 'plug/waterfall/bootstrap-waterfall'],function() {
+                $(el).data('bootstrap-waterfall-template', data).waterfall();
+            })
+        }
         //表单验证
         , validate: function (options) {
             var options = options ? options:''
