@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.pfinaljs = {};
+        window.pfinaljs.base = '../';
+    </script>
+    <script src="../require.js"></script>
+    <script src="../config.js"></script>
+</head>
+
+<body>
+
+    <button onclick="preview()" type="button" class="btn btn-default">点击一下</button>
+    <script>
+        function preview() {
+            require(['pfinaljs'], function (pfinaljs) {
+                pfinaljs.preview('https://tse2.mm.bing.net/th?id=OIP.fy9v0WjvXrB2GIECMWULIAHaFj&pid=Api')
+            })
+        }
+    </script>
+</body>
+
+</html>

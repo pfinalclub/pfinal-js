@@ -1,0 +1,18 @@
+{
+  "name": "pfinaljs",
+  "version": "0.0.1",
+  "description": "pfinaljs 是一个优秀的前端组件化框架，可以在浏览器中直接使用amd 调用。",
+  "main": "pfinaljs.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.coding.net/nero_xj/pfinaljs.git"
+  },
+  "author": "南丞",
+  "license": "ISC"
+}
