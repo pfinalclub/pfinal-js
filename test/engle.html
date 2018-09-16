@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.pfinaljs = {};
+        window.pfinaljs.base = '../';
+        window.pfinaljs.base_url = './';
+    </script>
+    <script src="../require.js"></script>
+    <script src="../config.js"></script>
+    <style type="text/css">
+        .enlarge_pane_contain {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        .enlarge_btn {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="enlarge_pane_contain">
+        <div class="enlarge_pane">
+            <div class="enlarge">
+                <div class="enlarge_contain">
+                    <img src="images/girl.jpg" srcset="images/girl.jpg 480w, images/girl.jpg 1200w" sizes="100vw"
+                        alt="" id="test-img">
+                </div>
+                <a href="images/1.jpg" class="enlarge_btn" title="Toggle Zoom">切换放大镜</a>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    require(['pfinaljs'], function (pfinaljs) {
+        pfinaljs.enlarge({
+            button: true,
+            hoverZoomWithoutClick: true,
+            delay: 300,
+            flyout: {
+                width: 300,
+                height: 300
+            },
+            placement: "inline",
+            magnification: 5
+        })
+    })
+</script>
+
+</html>

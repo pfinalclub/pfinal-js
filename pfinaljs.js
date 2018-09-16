@@ -37,6 +37,17 @@ define(['jquery','lodash'], function ($,_) {
                 $(el).data('bootstrap-waterfall-template', data).waterfall();
             })
         }
+
+        , enlarge: function (options) {
+            require(['jquery', 'enlarge'], function () {
+                $(".enlarge.inline-demo").data("options", options);
+                $(document).bind("enhance", function () {
+                    $("body").addClass("enhanced");
+                });
+                $(document).trigger("enhance");
+            })
+        }
+
         //表单验证
         , validate: function (options) {
             var options = options ? options:''
