@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.pfinaljs = {};
+        window.pfinaljs.base = '../';
+    </script>
+    <script src="../require.js"></script>
+    <script src="../config.js"></script>
+</head>
+
+<body>
+    <div style="height:2000px;border:1px solid red; width:50%;">
+
+    </div>
+    <script>
+        require(['pfinaljs'],function(pfinaljs){
+            pfinaljs.scroll_top();
+        })
+        // function scroll_top() {
+        //     $("html,body").animate({scrollTop:0},500);
+        // }
+    </script>
+</body>
+
+</html>

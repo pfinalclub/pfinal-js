@@ -70,6 +70,26 @@ define(['jquery','lodash'], function ($,_) {
                 layer.open(opt)
             })
         }
+        //返回顶部
+        , scroll_top: function(html,el,top_num){
+            var button = '<div id="stroll_to_top" style="position: fixed;right: 10px;bottom: 10px;z-index: 1010;width: 32px;min-height: 32px;overflow: hidden;border-radius: 0;text-align: center;">'+
+            '<a style="display: block;" title="回到顶部"><i style="color: #ddd;line-height: 32px;    width:100%;background-color: #555;    vertical-align: middle;" class="fa fa-arrow-up"></i></a></div>';
+            require(['jquery','bootstrap'],function(){
+                var _html = html?html:button;
+                var obj = el?$(el):$('body');
+                obj.append(_html);
+                $(window).scroll(function(){
+                    if($(window).scrollTop()==0) {
+                        $("#stroll_to_top").css('opacity',0)
+                    }else {
+                        $("#stroll_to_top").css('opacity',1)
+                    }
+                })
+                $("#stroll_to_top").bind("click",function(){
+                    $("html,body").animate({scrollTop:0},500);
+                })
+            })
+        }
 
          //设备检测
         , isMobile: function () {
