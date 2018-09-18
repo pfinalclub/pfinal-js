@@ -24,20 +24,25 @@ define(['jquery','lodash'], function ($,_) {
                 video(TagName, callback);
             })
         }
+        // 信息
         , msg: function(msg,callback) {
             require(['layer'], function (layer) {
                 layer.msg(msg)
             })
         }
+        // css 等待按钮
         ,  spinners: function (callback) {
             require(['css!/less/css/spinner.css'])
         }
+
+        //瀑布流
         , waterfall: function(el,data) {
             require(['pfinaljs','bootstrap',window.pfinaljs.base_url + 'plug/waterfall/bootstrap-waterfall'],function() {
                 $(el).data('bootstrap-waterfall-template', data).waterfall();
             })
         }
-
+        
+        //放大镜
         , enlarge: function (options) {
             require(['jquery', 'enlarge'], function () {
                 $(".enlarge.inline-demo").data("options", options);
@@ -90,6 +95,57 @@ define(['jquery','lodash'], function ($,_) {
                 })
             })
         }
+        // 文件切片上传
+        , upload_section: function(el,url,callback,el_btn){
+            require(['jquery','bootstrap'],function(){
+                var page = {
+                    init: function (callback) {
+                        if(el_btn) {
+                            $(el_btn).click($.proxy(this.upload, this));
+                        } else {
+                            $(el).change($.proxy(this.upload, this,callback)); 
+                        }
+                    },
+                    upload: function (callback) {
+                        var file = $("#file")[0].files[0], //文件对象
+                            name = file.name, //文件名
+                            size = file.size, //总大小
+                            succeed = 0;
+        
+                        var shardSize = 2 * 1024 * 1024, //以2MB为一个分片
+                            shardCount = Math.ceil(size / shardSize); //总片数
+        
+                        for (var i = 0; i < shardCount; ++i) {
+                            //计算每一片的起始与结束位置
+                            var start = i * shardSize,
+                                end = Math.min(size, start + shardSize);
+        
+                            //构造一个表单，FormData是HTML5新增的
+                            var form = new FormData();
+                            form.append("data", file.slice(start, end)); //slice方法用于切出文件的一部分
+                            form.append("name", name);
+                            form.append("total", shardCount); //总片数
+                            form.append("index", i + 1); //当前是第几片
+        
+                            //Ajax提交
+                            $.ajax({
+                                url:url,
+                                type: "POST",
+                                data: form,
+                                async: true, //异步
+                                processData: false, //很重要，告诉jquery不要对form进行处理
+                                contentType: false, //很重要，指定为false才能形成正确的Content-Type
+                                success: function (res) {
+                                    ++succeed
+                                    callback && callback(res)
+                                }
+                            });
+                        }
+                    }  
+                }
+                page.init(callback);
+            })
+        }
 
          //设备检测
         , isMobile: function () {
@@ -104,6 +160,5 @@ define(['jquery','lodash'], function ($,_) {
             }
             return flag;
         }
-    } 
-    
+    }
 })
