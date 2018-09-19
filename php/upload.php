@@ -30,7 +30,7 @@ fwrite($tempFile,$filedata);
 fclose($tempFile);
 fclose($temp);
     //循环读取临时文件并将其合并置入新文件里面
-if(file_exists($save)) @unlink($save);
+//if(file_exists($save)) @unlink($save);
 for($i=1;$i<=$ftotal;$i++)
 {
     $readData = @fopen($dir."/".$i.".tmp","r+");
