@@ -1,6 +1,0 @@
-[15-Jul-2015 03:08:14 UTC] PHP Warning:  fopen(): Filename cannot be empty in /home/lonelymo/public_html/HTML5Upload/php/send/index.php on line 21
-[15-Jul-2015 03:08:14 UTC] PHP Warning:  fread() expects parameter 1 to be resource, boolean given in /home/lonelymo/public_html/HTML5Upload/php/send/index.php on line 22
-[15-Jul-2015 03:08:14 UTC] PHP Warning:  fclose() expects parameter 1 to be resource, boolean given in /home/lonelymo/public_html/HTML5Upload/php/send/index.php on line 29
-[15-Jul-2015 03:10:27 UTC] PHP Warning:  fopen(): Filename cannot be empty in /home/lonelymo/public_html/HTML5Upload/php/send/index.php on line 21
-[15-Jul-2015 03:10:27 UTC] PHP Warning:  fread() expects parameter 1 to be resource, boolean given in /home/lonelymo/public_html/HTML5Upload/php/send/index.php on line 22
-[15-Jul-2015 03:10:27 UTC] PHP Warning:  fclose() expects parameter 1 to be resource, boolean given in /home/lonelymo/public_html/HTML5Upload/php/send/index.php on line 29
