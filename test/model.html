@@ -12,9 +12,9 @@
 <body style="padding: 50px;">
 <h5 onclick="base()" class="btn btn-success">基本使用</h5>
 <script>
-    require(['bootstrap'])
+    require(['jquery','bootstrap'])
     function base() {
-        require(['pfinaljs','bootstrap'], function (pfinaljs) {
+        require(['pfinaljs'], function (pfinaljs) {
             var modalObj = pfinaljs.modal({
                 title: '友情提示',//标题
                 content: '大爷的',//内容
