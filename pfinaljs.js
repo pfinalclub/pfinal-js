@@ -32,7 +32,8 @@ define(['jquery','lodash'], function ($,_) {
         }
         // css 等待按钮
         ,  spinners: function (callback) {
-            require(['css!/less/css/spinner.css'])
+            //console.log(123);
+            require(['css!/pfnaljs/less/css/spinner.css'])
         }
 
         //瀑布流
