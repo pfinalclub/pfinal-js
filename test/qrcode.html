@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.pfinaljs = {};
+        window.pfinaljs.base = '../';
+    </script>
+    <script src="../require.js"></script>
+    <script src="../config.js"></script>
+</head>
+
+<body>
+    <div id="code"></div>
+    <script>
+        var option = {
+            render: 'canvas', //table方式
+            width: 200, //宽度
+            height: 200, //高度
+            text: 'https://friday-go.cc/Laravel-%E8%B5%84%E6%BA%90%E8%B7%AF%E7%94%B1%E4%B8%8E%E6%B3%A8%E5%85%A5',
+            typeNumber: -1, //计算模式  
+            background: "#ffffff", //背景颜色
+            foreground: "#000000", //二维码颜色
+            src: './images/2.jpg', //logo图片
+            //toImg: false //是否转化为图片,默认为false
+        }
+        require(['pfinaljs'], function (pfinaljs) {
+            //console.log(option)
+            pfinaljs.qrcode("#code",'这个是啥',option);
+        })
+    </script>
+</body>
+
+</html>
