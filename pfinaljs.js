@@ -193,16 +193,29 @@ define(['jquery', 'lodash'], function ($, _) {
             //设备检测
             ,
         isMobile: function () {
-            let userAgentInfo = navigator.userAgent;
-            let Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");
-            let flag = false;
-            for (let v = 0; v < Agents.length; v++) {
-                if (userAgentInfo.indexOf(Agents[v]) > 0) {
-                    flag = true;
-                    break;
+                let userAgentInfo = navigator.userAgent;
+                let Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");
+                let flag = false;
+                for (let v = 0; v < Agents.length; v++) {
+                    if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                        flag = true;
+                        break;
+                    }
                 }
+                return flag;
             }
-            return flag;
+            // 百度图片上传
+            ,
+            webuploader_up: function (el, url) {
+            console.log(el)
+            require(['component/webuploader_up'], function (webuploader_up) {
+                console.log(webuploader_up(el,url))
+                console.log()
+            })
+            // require(['component/select2'], function (select2) {
+            //     console.log(select2)
+            //     select2(el, options={})
+            // })
         }
     }
 })
