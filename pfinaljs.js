@@ -206,16 +206,12 @@ define(['jquery', 'lodash'], function ($, _) {
             }
             // 百度图片上传
             ,
-            webuploader_up: function (el, url) {
-            console.log(el)
+        webuploader_up: function (el, url) {
+            let uploader = {};
             require(['component/webuploader_up'], function (webuploader_up) {
-                console.log(webuploader_up(el,url))
-                console.log()
+                uploader = webuploader_up(el, url)
+                
             })
-            // require(['component/select2'], function (select2) {
-            //     console.log(select2)
-            //     select2(el, options={})
-            // })
         }
     }
 })
