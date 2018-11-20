@@ -7,30 +7,191 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="../plug/webuploader/webuploader.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link href="https://cdn.bootcss.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        li {
+            width: 110px;
+            height: 110px;
+            text-align: center;
+            margin: 0 8px 20px 0;
+            position: relative;
+            display: inline;
+            float: left;
+            overflow: hidden;
+            font-size: 12px;
+        }
+
+        li p.title {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            top: 5px;
+            text-indent: 5px;
+            text-align: left;
+        }
+
+        li p.imgWrap {
+            position: relative;
+            z-index: 2;
+            line-height: 110px;
+            vertical-align: middle;
+            overflow: hidden;
+            width: 110px;
+            height: 110px;
+        }
+
+        li:hover div.file-panel {
+            display: block;
+        }
+
+        div.file-panel {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.5);
+            width: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 300;
+            height: 24px;
+            display: none;
+        }
+
+        div.file-panel span {
+            display: inline;
+            color: #ffffff;
+            cursor: pointer;
+            margin: 5px 1px 1px;
+            display: inline;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="picker">选择文件</div>
+    <div class="container">
+        <div id="picker">点击选择图片</div>
+        <div class="queueList"></div>
+        <div id="filePicker2"></div>
+        <div class="btn btn-success uploadBtn">开始上传</div>
+    </div>
+
 </body>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="../plug/webuploader/webuploader.min.js"></script>
 <script>
+    $queue = $(".queueList")
+    state = 'pedding';
+    // 添加的文件数量
+    fileCount = 0;
+
+    // 添加的文件总大小
+    fileSize = 0;
     var uploader = WebUploader.create({
 
         // swf文件路径
         swf: '../plug/webuploader/Uploader.swf',
 
         // 文件接收服务端。
-        server: 'http://webuploader.duapp.com/server/fileupload.php',
+        server: '../php/upload_img.php',
 
         // 选择文件的按钮。可选。
         // 内部根据当前运行是创建，可能是input元素，也可能是flash.
-        pick: '#picker',
+        pick: {
+            id: '#picker',
+            multiple: true
+        },
 
         // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
-        resize: false
+        resize: false,
+        disableGlobalDnd: true,
+        fileNumLimit: 5,
+        fileSizeLimit: 200 * 1024 * 1024, // 200 M
+        fileSingleSizeLimit: 50 * 1024 * 1024 // 50 M
     });
-    console.log(uploader)
+    //console.log(uploader)
+    uploader.addButton({
+        id: '#filePicker2',
+        label: '继续添加'
+    });
+    uploader.onFileQueued = function (file) {
+        fileCount++;
+        fileSize += file.size;
+        addFile(file);
+        // setState( 'ready' );
+        // updateTotalProgress();
+    };
+
+    function addFile(file) {
+        var $li = $('<li id="' + file.id + '">' +
+                '<p class="title">' + file.name + '</p>' +
+                '<p class="imgWrap"></p>' +
+                '</li>'),
+            $btns = $('<div class="file-panel">' +
+                '<span class="cancel"><i class="fa fa-trash-o" aria-hidden="true"></i></span>' +
+                '<span class="rotateLeft"><i class="fa fa-repeat" aria-hidden="true"></i></span></div>').appendTo($li),
+            $prgress = $li.find('p.progress span'),
+            $wrap = $li.find('p.imgWrap'),
+            $info = $('<p class="error"></p>'),
+            showError = function (code) {
+                switch (code) {
+                    case 'exceed_size':
+                        text = '文件大小超出';
+                        break;
+
+                    case 'interrupt':
+                        text = '上传暂停';
+                        break;
+
+                    default:
+                        text = '上传失败，请重试';
+                        break;
+                }
+                $info.text(text).appendTo($li);
+            }
+        uploader.makeThumb(file, function (error, src) {
+            var img;
+            if (error) {
+                return;
+            }
+            img = $('<img src="' + src + '">');
+            $wrap.empty().append(img);
+        }, 110, 110);
+        file.rotation = 0;
+        $btns.on('click', 'span', function () {
+            var index = $(this).index(),
+                deg;
+
+            switch (index) {
+                case 0:
+                    uploader.removeFile(file);
+                    return;
+
+                case 1:
+                    file.rotation += 90;
+                    break;
+            }
+        })
+        $li.appendTo($queue);
+    }
+
+    function removeFile(file) {
+        var $li = $('#' + file.id);
+
+        //delete percentages[file.id];
+        //updateTotalProgress();
+        $li.off().find('.file-panel').off().end().remove();
+    }
+
+    uploader.onFileDequeued = function (file) {
+        fileCount--;
+        fileSize -= file.size;
+        removeFile(file);
+    }
 </script>
 
 </html>

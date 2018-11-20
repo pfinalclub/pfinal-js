@@ -13,6 +13,7 @@
     </script>
     <script src="../require.js"></script>
     <script src="../config.js"></script>
+
 </head>
 
 <body style="padding: 50px;">
@@ -20,7 +21,51 @@
 </body>
 <script>
     require(['pfinaljs'], function (pfinaljs) {
-        pfinaljs.webuploader_up('#picker', window.pfinaljs.base_url + '/pfinaljs/php/upload_img.php')
+        var Option = {
+            auto: true,
+            swf: window.pfinaljs.base + 'pfinaljs/plug/webuploader/Uploader.swf',
+            // 文件接收服务端。
+            server: window.pfinaljs.base_url + '/pfinaljs/php/upload_img.php',
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: '#picker',
+            // 只允许选择图片文件。
+            accept: {
+                title: 'Images',
+                extensions: 'gif,jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            }
+        };
+        pfinaljs.webuploader(up, Option)
+        var up = function (uploader) {
+            console.log(uploader);
+            // 当有文件添加进来的时候
+            uploader.on('fileQueued', function (file) {
+                var $li = $(
+                        '<div id="' + file.id + '" class="file-item thumbnail">' +
+                        '<img>' +
+                        '<div class="info">' + file.name + '</div>' +
+                        '</div>'
+                    ),
+                    $img = $li.find('img');
+
+
+                // $list为容器jQuery实例
+                $list.append($li);
+
+                // 创建缩略图
+                // 如果为非图片文件，可以不用调用此方法。
+                // thumbnailWidth x thumbnailHeight 为 100 x 100
+                uploader.makeThumb(file, function (error, src) {
+                    if (error) {
+                        $img.replaceWith('<span>不能预览</span>');
+                        return;
+                    }
+
+                    $img.attr('src', src);
+                }, thumbnailWidth, thumbnailHeight);
+            });
+        }
     })
 </script>
 

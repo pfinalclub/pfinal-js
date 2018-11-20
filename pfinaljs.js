@@ -206,12 +206,28 @@ define(['jquery', 'lodash'], function ($, _) {
             }
             // 百度图片上传
             ,
-        webuploader_up: function (el, url) {
-            let uploader = {};
-            require(['component/webuploader_up'], function (webuploader_up) {
-                uploader = webuploader_up(el, url)
-                
-            })
+        webuploader: function (callback,option) {
+            require(['plug/webuploader/js/webuploader','css!' + window.pfinaljs.base + 'pfinaljs/plug/webuploader/webuploader.css'],function(WebUploader){
+                let uploader = '';
+                if(option == undefined) {
+                    uploader = WebUploader.create({
+                        // swf文件路径
+                        swf: '../plug/webuploader/Uploader.swf',
+                        // 文件接收服务端。
+                        server: 'http://webuploader.duapp.com/server/fileupload.php',
+                        // 选择文件的按钮。可选。
+                        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                        pick: '#picker',
+                        // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+                        resize: false
+                    });
+                } else {
+                    uploader = WebUploader.create(option)
+                } 
+                if ($.isFunction(callback)) {
+                    callback(uploader);
+                }
+            })           
         }
     }
 })
