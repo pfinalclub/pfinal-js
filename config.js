@@ -17,7 +17,7 @@ require.config({
         bootstrap4: 'https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.bundle.min',
         lodash: 'https://cdn.bootcss.com/lodash.js/4.17.10/lodash.min',
         jquery: "https://cdn.bootcss.com/jquery/3.3.1/jquery.min",
-        webuploader: window.pfinaljs.base + 'pfinaljs/plug/webuploader/webuploader.min'
+        webuploader: window.pfinaljs.base + 'pfinaljs/plug/webuploader/webuploader.min',
     },
     shim: {
         pfinaljs: {
