@@ -29,9 +29,9 @@ define(['jquery', 'lodash'], function ($, _) {
             }
             // 信息
             ,
-        flv:function(TagName, callback) {
-            require(['component/flv'], function (flv) {
-                flv(TagName, callback);
+        fly: function (TagName, callback) {
+            require(['component/fly'], function (fly) {
+                fly(TagName, callback);
             })
         }
             ,

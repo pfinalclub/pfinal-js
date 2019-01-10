@@ -16,10 +16,13 @@
 </head>
 
 <body style="padding: 50px;">
-    <video id="videoElement"></video>
+<video id="videoElement" controls="" autoplay="" poster="https://tse2.mm.bing.net/th?id=OIP.fy9v0WjvXrB2GIECMWULIAHaFj&pid=Api"
+type='mp4' source="http://vjs.zencdn.net/v/oceans.mp4"></video>
     <script>
         require(['pfinaljs'], function (pfinaljs) {
-            console.log(pfinaljs.flv())
+            pfinaljs.fly("videoElement",function(flyplay){
+                console.log(flyplay)
+            })
         })
     </script>
 </body>
