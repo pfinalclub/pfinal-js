@@ -30,9 +30,6 @@ define(['jquery', 'lodash'], function ($, _) {
             // 信息
             ,
         flv:function(TagName, callback) {
-            // return function(){
-            //     console.log(123);
-            // }
             require(['component/flv'], function (flv) {
                 flv(TagName, callback);
             })
