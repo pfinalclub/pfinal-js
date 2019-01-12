@@ -23,17 +23,11 @@ define(['jquery', 'lodash'], function ($, _) {
             //视频播放器
             ,
         video: function (TagName, callback) {
-                require(['component/video'], function (video) {
+            require(['component/video'], function (video) {
                     video(TagName, callback);
                 })
             }
             // 信息
-            ,
-        fly: function (TagName, callback) {
-            require(['component/fly'], function (fly) {
-                fly(TagName, callback);
-            })
-        }
             ,
         msg: function (msg, callback) {
                 require(['layer'], function (layer) {
