@@ -38,17 +38,16 @@ define(['jquery', 'lodash'], function ($, _) {
             ,
         spinners: function (callback) {
                 //console.log(123);
-                require(['css!' + window.location.host + '/pfnaljs/less/css/spinner.css'])
+                require(['css!' + window.pfinaljs.base + 'pfinaljs/less/css/spinner.css'])
             }
 
             //瀑布流
             ,
         waterfall: function (el, data) {
-                require(['pfinaljs', 'bootstrap', window.location.host + '/pfnaljs/plug/waterfall/bootstrap-waterfall'], function () {
+                require(['pfinaljs', 'bootstrap', window.pfinaljs.base + '/pfinaljs/plug/waterfall/bootstrap-waterfall'], function () {
                     $(el).data('bootstrap-waterfall-template', data).waterfall();
                 })
             }
-
             //放大镜
             ,
         enlarge: function (options) {
@@ -210,7 +209,7 @@ define(['jquery', 'lodash'], function ($, _) {
             // 百度图片上传
             ,
         webuploader: function (callback, option) {
-            require(['plug/webuploader/js/webuploader', 'css!' + window.pfinaljs.base + 'pfinaljs/plug/webuploader/webuploader.css'], function (WebUploader) {
+            require([window.pfinaljs.base + 'pfinaljs/plug/webuploader/webuploader', 'css!' + window.pfinaljs.base + 'pfinaljs/plug/webuploader/webuploader.css'], function (WebUploader) {
                 let uploader = '';
                 if (option == undefined) {
                     uploader = WebUploader.create({

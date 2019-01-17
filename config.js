@@ -10,9 +10,9 @@ require.config({
     paths: {
         css: 'css.min',
         pfinaljs: 'pfinaljs',
-        layer: window.pfinaljs.base + 'pfinaljs/plug/plug/layer/layer',
-        laydate: window.pfinaljs.base + 'pfinaljs/plug/plug/laydate/laydate',
-        enlarge: window.pfinaljs.base + 'pfinaljs/plug/plug/enlarge/enlarge',
+        layer: window.pfinaljs.base + 'pfinaljs/plug/layer/layer',
+        laydate: window.pfinaljs.base + 'pfinaljs/plug/laydate/laydate',
+        enlarge: window.pfinaljs.base + 'pfinaljs/plug/enlarge/enlarge',
         bootstrap: 'https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min',
         bootstrap4: 'https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.bundle.min',
         lodash: 'https://cdn.bootcss.com/lodash.js/4.17.10/lodash.min',
@@ -24,7 +24,7 @@ require.config({
             deps: ["css!https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"]
         },
         layer: {
-            deps: ['css!' + window.pfinaljs.base + 'plug/layer/theme/default/layer.css']
+            deps: ['css!' + window.pfinaljs.base + 'pfinaljs/plug/layer/theme/default/layer.css']
         },
         bootstrap: {
             deps: ['css!https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css']
