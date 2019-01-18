@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.pfinaljs = {};
+        window.pfinaljs.base = '../';
+        window.pfinaljs.base_url = 'http://localhost'
+    </script>
+    <script src="../require.js"></script>
+    <script src="../config.js"></script>
+</head>
+
+<body>
+    <div id="editor"></div>
+    <script>
+        require(['pfinaljs'], function (pfinaljs) {
+            pfinaljs.wangEditor("#editor", function (editor) {
+                console.log(editor)
+            })
+        })
+    </script>
+</body>
+
+</html>

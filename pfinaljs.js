@@ -16,10 +16,17 @@ define(['jquery', 'lodash'], function ($, _) {
             //layui 日期选择
             ,
         date: function (options) {
-                require(['laydate'], function (laydate) {
-                    laydate.render(options)
+            require(['laydate'], function (laydate) {
+                laydate.render(options)
+            })
+        },
+        dateselect: function (el, val) {
+                //console.log(el);
+                require(['component/dateselect'], function (dateselect) {
+                    dateselect(el, val)
                 })
             }
+
             //视频播放器
             ,
         video: function (TagName, callback) {
@@ -164,7 +171,6 @@ define(['jquery', 'lodash'], function ($, _) {
                     //
                 })
             }
-            // 文件切片上传
             ,
         // 文件切片上传
         upload_section: function (el, url, callback, el_btn, _token) {
@@ -257,6 +263,12 @@ define(['jquery', 'lodash'], function ($, _) {
                 if ($.isFunction(callback)) {
                     callback(uploader);
                 }
+            })
+        },
+        //wangEditor 编辑器
+        wangEditor: function (el, callback) {
+            require(['component/wangeditor'], function (wangeditor) {
+                wangeditor(el,callback);
             })
         }
     }
