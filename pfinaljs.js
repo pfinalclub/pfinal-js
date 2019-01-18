@@ -23,19 +23,48 @@ define(['jquery', 'lodash'], function ($, _) {
             //视频播放器
             ,
         video: function (TagName, callback) {
-            require(['component/video'], function (video) {
+                require(['component/video'], function (video) {
                     video(TagName, callback);
                 })
             }
             // 信息
             ,
         msg: function (msg, callback) {
-                require(['layer'], function (layer) {
-                    layer.msg(msg)
-                })
-            }
-            // css 等待按钮
-            ,
+            require(['layer'], function (layer) {
+                layer.msg(msg)
+            })
+        },
+        success: function (msg) {
+            require(['layer'], function (layer) {
+                layer.msg(msg, {
+                    icon: 1,
+                    time: 2000
+                });
+            })
+        },
+        error: function (msg) {
+            require(['layer'], function (layer) {
+                layer.msg(msg, {
+                    icon: 2,
+                    time: 2000
+                });
+            })
+        },
+        //消息通知
+        notify: function (options, settings) {
+            require(['component/notify'], function (notify) {
+                notify(options, settings);
+            })
+        },
+        swal: function (title, content, type) {
+            require([window.pfinaljs.base_url + '/pfinaljs/plug/sweetalert/sweetalert.min.js', 'lodash'], function (swal, _) {
+                if (_.isObject(title)) {
+                    swal(title)
+                } else {
+                    swal(title, content, type)
+                }
+            });
+        },
         spinners: function (callback) {
                 //console.log(123);
                 require(['css!' + window.pfinaljs.base + 'pfinaljs/less/css/spinner.css'])
@@ -59,7 +88,6 @@ define(['jquery', 'lodash'], function ($, _) {
                     $(document).trigger("enhance");
                 })
             }
-
             //表单验证
             ,
         validate: function (options) {
